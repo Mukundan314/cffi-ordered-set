@@ -1,8 +1,10 @@
+#define NDEBUG
+
 #include <algorithm>
 #include <vector>
 #include <array>
 #include <cstdint>
-#include <cassert>
+// #include <cassert>
 
 template<typename T>
 struct ordered_set_small {
@@ -13,7 +15,7 @@ struct ordered_set_small {
     ordered_set_small() : size(0) {}
 
     T get(int k) {
-        assert(0 <= k && k < size);
+        // assert(0 <= k && k < size);
         return val[k];
     }
     
@@ -48,7 +50,7 @@ struct ordered_set_small {
     }
 
     ordered_set_small split_half() {
-        assert(size == max_size);
+        // assert(size == max_size);
         int r = max_size / 2;
         ordered_set_small res;
         for (int i = r; i < max_size; i++) {
@@ -136,7 +138,7 @@ struct ordered_set {
 
     node *balance(node *v) {
         int bf = v->balanace_factor();
-        assert(-2 <= bf && bf <= 2);
+        // assert(-2 <= bf && bf <= 2);
         if (bf == 2) {
             if (v->l->balanace_factor() == -1) {
                 v->l = rotate_left(v->l);
@@ -183,7 +185,7 @@ struct ordered_set {
             int l = B * i, r = std::min(N, l + B);
             ordered_set_small<T> x;
             for (int j = l; j < r; j++) {
-                assert(!j || val[j - 1] < val[j]);
+                // assert(!j || val[j - 1] < val[j]);
                 x.val[j - l] = val[j];
             }
             x.size = r - l;
@@ -292,7 +294,7 @@ struct ordered_set {
                 v = v->r;
             } else {
                 int idx = v->x.lb(x);
-                assert(idx);
+                // assert(idx);
                 return {true, v->x.get(idx - 1)};
             }
         }
@@ -317,7 +319,7 @@ struct ordered_set {
                 v = v->r;
             } else {
                 int idx = v->x.ub(x);
-                assert(idx != v->x.size);
+                // assert(idx != v->x.size);
                 return {true, v->x.get(idx)};
             }
         }

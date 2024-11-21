@@ -5,9 +5,11 @@ from cffi import FFI
 extra_compile_args = []
 if platform.system() != "Windows":
     extra_compile_args.append("-std=c++20")
+    extra_compile_args.append("-O3")
 else:
     extra_compile_args.append("/std:c++20")
-
+    extra_compile_args.append("/O2")
+    extra_compile_args.append("/arch:AVX2")
 
 ffibuilder = FFI()
 
